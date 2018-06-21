@@ -1,6 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.col-center {
+  float: none;
+  margin: auto;
+}
+
 header {
   #logo {
     float: left;
