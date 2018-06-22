@@ -1,0 +1,13 @@
+<!-- Checks if there are any errors in @user object -->
+<% if @user.errors.any? %>
+    <div class="alert alert-danger">
+        The form contains <%= @user.errors.count %> errors.
+    </div>
+
+     <ul>
+        <!-- Display each error -->
+        <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
