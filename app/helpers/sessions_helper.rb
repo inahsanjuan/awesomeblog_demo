@@ -23,4 +23,8 @@ module SessionsHelper
   def log_out
     session.delete(:user_id)
   end
+
+  def current_user?(user)
+    current_user == user
+  end
 end
