@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :microposts
+
   before_save { email.downcase! }
 
   # constant variable with regular expression value

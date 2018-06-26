@@ -24,3 +24,11 @@ User.create(
   )
 end
 
+users = User.take(6)
+# Generate 20 microposts to each user
+
+20.times do
+	content = Faker::Lorem.sentence(5)
+
+	users.each { |user|  user.microposts.create(content: content) }
+end

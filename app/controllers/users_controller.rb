@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_login, except: [:new, :create]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
+
   def index
     @users = User.paginate(page: params[:page], per_page: 15)
   end
@@ -22,14 +26,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 15)
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
 
     if @user.update_attributes(user_params)
       flash[:success] = "Updated your information successfully."
@@ -50,5 +55,31 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def require_login
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Only current user can access
+    def correct_user
+      @user = User.find(params[:id])
+
+      unless current_user?(@user)
+        flash[:danger] = "You are not allowed here."
+        redirect_to root_url
+      end
+    end
+
+    # Only admin user can access
+    def admin_user
+      unless current_user.admin?
+        flash[:danger] = "You are not allowed to do that."
+        redirect_to root_url
+      end
     end
 end

@@ -1,6 +1,30 @@
-<div class="jumbotron">
-	<h1>Awesome Blog App</h1>
-	<p>This is the home page for the Awesome Blog.</p>
+<% if logged_in? %>
+    <div class="row">
+        <div class="col-md-4">
+            <section class="user_info">
+                <h1>
+                    <%= gravatar_for(current_user) %>
+                    <%= current_user.name %>      
+                </h1>
+            </section>
 
-	<div><small>This is a project under Kredo Japan and Framgia Ph</small></div>
-</div>
+            <!-- FORM HERE -->
+        </div>
+        <div class="col-md-8">
+            <h3>Microposts</h3>
+
+            <ul class="microposts">
+                <%= render @microposts %>
+            </ul>
+
+            <%= will_paginate @microposts %>
+        </div>
+    </div>
+<% else %>
+    <div class="jumbotron">
+        <h1>Awesome Blog App</h1>
+        <p>This is the home page for the Awesome Blog.</p>
+
+        <div><small>This is a project under Kredo Japan and Framgia Ph</small></div>
+    </div>
+<% end %>
