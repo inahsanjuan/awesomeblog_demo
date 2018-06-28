@@ -16,10 +16,10 @@ User.create(
   admin: true
 )
 
-50.times do
+50.times do |n|
   User.create(
     name: Faker::Pokemon.name,
-    email: Faker::Internet.email,
+    email: "example-#{n+1}@railstutorial.org",
     password: "password"
   )
 end
