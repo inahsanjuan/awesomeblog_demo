@@ -9,6 +9,10 @@
                 <span><%= pluralize(current_user.microposts.count, "micropost") %></span>
             </section>
 
+            <section>
+                <%= render 'shared/stats'  %>
+            </section>
+
             <section class="micropost_form">
                 <%= render 'shared/micropost_form' %>
             </section>

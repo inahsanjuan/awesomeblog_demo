@@ -10,10 +10,10 @@ require 'faker'
 
 # The admin
 User.create(
-	name: "Hani",
-	email: "inahmarie.sanjuan@framgia.com",
-	password: "password",
-	admin: true
+  name: "Hani",
+  email: "inahmarie.sanjuan@framgia.com",
+  password: "password",
+  admin: true
 )
 
 50.times do
@@ -28,7 +28,16 @@ users = User.take(6)
 # Generate 20 microposts to each user
 
 20.times do
-	content = Faker::Lorem.sentence(5)
+  content = Faker::Lorem.sentence(5)
 
-	users.each { |user|  user.microposts.create(content: content) }
+  users.each { |user|  user.microposts.create(content: content) }
 end
+
+# To add following data
+users = User.all
+user = User.first
+followers = users[2..50]
+following = users[3..40]
+
+followers.each { |follower| follower.follow(user) }
+following.each { |followed| user.follow(followed) }

@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   resources :users, except: :new
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 end
