@@ -2,16 +2,23 @@ class VotesController < ApplicationController
   before_action :require_login, only: [:create, :destroy]
 
   def create
-    micropost = Micropost.find(params[:micropost_id])
-    current_user.votes.create(micropost: micropost)
+    @micropost = Micropost.find(params[:micropost_id])
+    current_user.votes.create(micropost: @micropost)
 
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
+    # redirect_to root_url
   end
 
   def destroy
-    vote = Vote.find(params[:id])
-    vote.destroy
+    @micropost = Vote.find(params[:id]).micropost
+    @micropost.voters.delete(current_user)
 
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 end

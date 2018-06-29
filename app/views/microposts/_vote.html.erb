@@ -1,17 +1,13 @@
-<% unless current_user.voted?(micropost) %>
-    <!-- Follow button -->
-    <%= button_to current_user.votes.build, class: 'btn btn-warning btn-xs',
-                                            params: { micropost_id: micropost.id },
-                                            method: :post do %>
-        <i class="glyphicon glyphicon-arrow-up"></i>
-        Upvote
+<div id="vote_form">
+    <% unless current_user.voted?(micropost) %>
+        <!-- Upvote button -->
+        <%= render 'microposts/upvote', micropost: micropost %>
+    <% else %>
+        <!-- Downvote button -->
+        <%= render 'microposts/downvote', micropost: micropost %>
     <% end %>
-<% else %>
-    <!-- Unfollow button -->
-    <%= button_to vote_path(current_user.votes.find_by(micropost: micropost)), class: 'btn btn-default btn-xs', method: :delete do %>
-        <i class="glyphicon glyphicon-arrow-down"></i>
-        Downvote
-    <% end %>
-<% end %>
+</div>
 
-<%= pluralize(micropost.votes.count, "vote") %>
+<span id="vote_count">
+    <%= pluralize(micropost.votes.count, "vote") %>
+</span>

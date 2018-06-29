@@ -110,8 +110,12 @@ form {
   .vote {
     margin-left: 58px;
     margin-top: 13px;
+
+    #vote_form {
+      display: inline-block;
+    }
   }
-}
+} /* --microposts */
 
 aside {
   textarea {
