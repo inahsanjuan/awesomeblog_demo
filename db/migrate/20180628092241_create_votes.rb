@@ -6,5 +6,7 @@ class CreateVotes < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :votes, [:user_id, :micropost_id], unique: true
   end
 end

@@ -9,10 +9,12 @@
         <section>
             <%= render 'shared/stats' %>
         </section>
-
-        <section>
-            <%= render 'users/follow_form' %>
-        </section>
+        
+        <% unless current_user?(@user)  %> 
+            <section>
+                <%= render 'users/follow_form' %>
+            </section>
+        <% end %>
     </div>
     <div class="col-md-8">
         <h3>Microposts</h3>

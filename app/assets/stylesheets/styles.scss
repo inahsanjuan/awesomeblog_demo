@@ -168,3 +168,12 @@ span.picture {
 .users.follow {
   padding: 0;
 }
+
+.vote {
+  margin-top: 10px;
+  margin-left: 60px;
+
+  > * {
+    display: inline-block;
+  }
+}

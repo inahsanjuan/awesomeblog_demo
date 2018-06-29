@@ -1,0 +1,15 @@
+<div class="vote_form">
+    <% unless current_user.voting?(micropost) %>
+        <!-- Upvote button -->
+        <%= button_to current_user.votes.build, params: { micropost_id: micropost.id }, class: 'btn btn-warning btn-xs' do %>
+            <i class="glyphicon glyphicon-arrow-up"></i> Upvote
+        <% end %>
+    <% else %>
+        <!-- Downvote button -->
+        <%= button_to current_user.votes.find_by(micropost: micropost), method: :delete, class: 'btn btn-default btn-xs' do %>
+            <i class="glyphicon glyphicon-arrow-down"></i> Downpvote
+        <% end %>
+    <% end %>
+</div>
+
+<%= pluralize(micropost.votes.count, "vote") %>

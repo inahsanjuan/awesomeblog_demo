@@ -11,17 +11,13 @@ Rails.application.routes.draw do
 
   get     '/signup',  	to: 'users#new'
 
-
   resources :users, except: :new do
     member do
       get 'following', 'followers'
     end
-
-    # get     '/users/:id/following',  to: 'users#following'
-    # get     '/users/:id/followers',  to: 'users#followers'
   end
 
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts,    only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :votes, only: [:create, :destroy]
+  resources :votes,         only: [:create, :destroy]
 end

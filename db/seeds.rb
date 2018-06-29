@@ -41,3 +41,9 @@ following = users[3..40]
 
 followers.each { |follower| follower.follow(user) }
 following.each { |followed| user.follow(followed) }
+
+microposts = Micropost.take(25)
+
+microposts.each do |micropost| 
+  followers.each { |follower| follower.upvote(micropost) }
+end
