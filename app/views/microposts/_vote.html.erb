@@ -1,0 +1,13 @@
+<div id="vote_form">
+    <% unless current_user.voted?(micropost) %>
+        <!-- Upvote button -->
+        <%= render 'microposts/upvote', micropost: micropost %>
+    <% else %>
+        <!-- Downvote button -->
+        <%= render 'microposts/downvote', micropost: micropost %>
+    <% end %>
+</div>
+
+<span id="vote_count">
+    <%= pluralize(micropost.votes.count, "vote") %>
+</span>

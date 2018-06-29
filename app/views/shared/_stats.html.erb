@@ -9,7 +9,7 @@
 	<% end %>
 
 	<%= link_to followers_user_path(@user) do %>
-		<strong class="stat">
+		<strong class="stat" id="followers">
 			<%= @user.followers.count %>
 		</strong>
 		followers

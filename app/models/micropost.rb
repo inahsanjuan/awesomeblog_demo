@@ -1,5 +1,9 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  has_many :votes
+
+  has_many :voters, through: :votes,
+                    source: :user
 
   default_scope -> { order(created_at: :desc) }
 
@@ -7,6 +11,10 @@ class Micropost < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validate  :picture_size
+
+  def voter?(user)
+    voters.include?(user)
+  end
 
   private
     # custom validation

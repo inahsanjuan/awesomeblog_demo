@@ -1,4 +1,4 @@
-<li>
+<li id="micropost-<%= micropost.id %>">
     <%= link_to gravatar_for(micropost.user, 50), micropost.user %>
     <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
     <span class="content">
@@ -15,4 +15,8 @@
                                 data: { confirm: "Are you sure?" } %>
         <% end %>
     </span>
+
+    <section class="vote">
+        <%= render 'microposts/vote', micropost: micropost %>
+    </section>
 </li>

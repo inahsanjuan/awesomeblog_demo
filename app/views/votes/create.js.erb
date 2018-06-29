@@ -1,0 +1,2 @@
+$('#micropost-<%= @micropost.id %> #vote_form').html("<%= escape_javascript(render('microposts/downvote', micropost: @micropost)) %>");
+$('#micropost-<%= @micropost.id %> #vote_count').html("<%= pluralize(@micropost.votes.count, 'vote') %>");
